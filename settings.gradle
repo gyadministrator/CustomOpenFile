@@ -1,0 +1,2 @@
+include ':app', ':filelib'
+rootProject.name = 'CustomOpenFile'
