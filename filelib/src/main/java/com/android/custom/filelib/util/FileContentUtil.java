@@ -35,28 +35,28 @@ public class FileContentUtil {
                     String s1 = s.contains("/") ? s.substring(s.lastIndexOf("/") + 1) : s;
                     tvTitle.setText(s1);
                     switch (type) {
-                        case "doc":
+                        case "item_doc":
                         case "docx":
-                            ivIcon.setImageResource(R.mipmap.doc);
+                            ivIcon.setImageResource(R.mipmap.item_doc);
                             break;
-                        case "ppt":
+                        case "item_ppt":
                         case "pptx":
-                            ivIcon.setImageResource(R.mipmap.ppt);
+                            ivIcon.setImageResource(R.mipmap.item_ppt);
                             break;
-                        case "xls":
+                        case "item_xls":
                         case "xlsx":
-                            ivIcon.setImageResource(R.mipmap.xls);
+                            ivIcon.setImageResource(R.mipmap.item_xls);
                             break;
-                        case "txt":
-                            ivIcon.setImageResource(R.mipmap.txt);
+                        case "item_txt":
+                            ivIcon.setImageResource(R.mipmap.item_txt);
                             break;
-                        case "pdf":
-                            ivIcon.setImageResource(R.mipmap.pdf);
+                        case "item_pdf":
+                            ivIcon.setImageResource(R.mipmap.item_pdf);
                             break;
                         case "png":
                         case "jpg":
                         case "jpeg":
-                            ivIcon.setImageResource(R.mipmap.pic);
+                            ivIcon.setImageResource(R.mipmap.item_pic);
                             break;
                     }
                     view.setOnClickListener(new View.OnClickListener() {

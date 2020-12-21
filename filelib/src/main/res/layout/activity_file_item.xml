@@ -14,7 +14,7 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="10dp"
-        android:src="@mipmap/doc" />
+        android:src="@mipmap/item_doc" />
 
     <TextView
         android:id="@+id/tv_title"

@@ -48,20 +48,20 @@ public class OpenFileUtil {
                 return getImageFileIntent(filePath);
             case "apk":
                 return getApkFileIntent(filePath);
-            case "ppt":
+            case "item_ppt":
             case "pptx":
                 return getPptFileIntent(filePath);
-            case "xls":
+            case "item_xls":
             case "xlsx":
                 return getExcelFileIntent(filePath);
-            case "doc":
+            case "item_doc":
             case "docx":
                 return getWordFileIntent(filePath);
-            case "pdf":
+            case "item_pdf":
                 return getPdfFileIntent(filePath);
             case "chm":
                 return getChmFileIntent(filePath);
-            case "txt":
+            case "item_txt":
                 return getTextFileIntent(filePath, false);
             default:
                 return getAllIntent(filePath);
@@ -101,20 +101,20 @@ public class OpenFileUtil {
                 return getImageFileIntent(filePath);
             case "apk":
                 return getApkFileIntent(filePath);
-            case "ppt":
+            case "item_ppt":
             case "pptx":
                 return getPptFileIntent(filePath);
-            case "xls":
+            case "item_xls":
             case "xlsx":
                 return getExcelFileIntent(filePath);
-            case "doc":
+            case "item_doc":
             case "docx":
                 return getWordFileIntent(filePath);
-            case "pdf":
+            case "item_pdf":
                 return getPdfFileIntent(filePath);
             case "chm":
                 return getChmFileIntent(filePath);
-            case "txt":
+            case "item_txt":
                 return getTextFileIntent(filePath, false);
             default:
                 return getAllIntent(filePath);
@@ -277,7 +277,7 @@ public class OpenFileUtil {
         intent.addCategory("android.intent.category.DEFAULT");
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         Uri uri = Uri.fromFile(new File(param));
-        intent.setDataAndType(uri, "application/pdf");
+        intent.setDataAndType(uri, "application/item_pdf");
         return intent;
     }
 }

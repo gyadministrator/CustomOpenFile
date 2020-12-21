@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
                 "http://10.0.0.254:8077/file_temp/20201216/20201216144228-%E5%AE%89%E5%85%A8%E9%9A%90%E6%82%A3%E9%9C%80%E6%B1%82%E9%97%AE%E9%A2%98.xls," +
                 "http://10.0.0.254:8077/file_temp/20201216/20201216144228-%E5%AE%89%E5%85%A8%E9%9A%90%E6%82%A3%E9%9C%80%E6%B1%82%E9%97%AE%E9%A2%98.xlsx," +
                 "http://10.0.0.254:8077/file_temp/20201216/测试.xlsx," +
-                "http://10.0.0.254:8077/file_temp/20201216/测试.txt," +
+                "http://10.0.0.254:8077/file_temp/20201216/测试.item_txt," +
                 "http://10.0.0.254:8077/file_temp/20201216/测试.png,"+
                 "http://10.0.0.254:8077/file_temp/20201216/测试.jpg,"+
                 "http://10.0.0.254:8077/file_temp/20201216/测试.jpeg";
