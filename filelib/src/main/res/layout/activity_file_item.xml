@@ -13,8 +13,8 @@
 
     <ImageView
         android:id="@+id/iv_icon"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         android:src="@mipmap/item_doc" />
 
     <TextView
@@ -27,6 +27,6 @@
         android:gravity="center_vertical"
         android:maxLines="2"
         android:text="xxx.doc"
-        android:textSize="20sp"
+        android:textSize="16sp"
         tools:ignore="HardcodedText" />
 </LinearLayout>
