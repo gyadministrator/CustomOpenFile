@@ -11,7 +11,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.custom.filelib.R;
-import com.android.custom.filelib.activity.FileActivity;
 
 /**
  * @ProjectName: CustomOpenFile
@@ -21,7 +20,7 @@ import com.android.custom.filelib.activity.FileActivity;
  * @CreateDate: 2020/12/21 14:34
  */
 public class FileContentUtil {
-    public static void getView(final Activity activity, String file, LinearLayout content) {
+    public static void getView(final Activity activity, String file, LinearLayout content, final OnFileItemClickListener fileItemClickListener) {
         if (TextUtils.isEmpty(file) || content == null) return;
         content.setOrientation(LinearLayout.VERTICAL);
         if (file.contains(",")) {
@@ -35,22 +34,22 @@ public class FileContentUtil {
                     String s1 = s.contains("/") ? s.substring(s.lastIndexOf("/") + 1) : s;
                     tvTitle.setText(s1);
                     switch (type) {
-                        case "item_doc":
+                        case "doc":
                         case "docx":
                             ivIcon.setImageResource(R.mipmap.item_doc);
                             break;
-                        case "item_ppt":
+                        case "ppt":
                         case "pptx":
                             ivIcon.setImageResource(R.mipmap.item_ppt);
                             break;
-                        case "item_xls":
+                        case "xls":
                         case "xlsx":
                             ivIcon.setImageResource(R.mipmap.item_xls);
                             break;
-                        case "item_txt":
+                        case "txt":
                             ivIcon.setImageResource(R.mipmap.item_txt);
                             break;
-                        case "item_pdf":
+                        case "pdf":
                             ivIcon.setImageResource(R.mipmap.item_pdf);
                             break;
                         case "png":
@@ -62,7 +61,9 @@ public class FileContentUtil {
                     view.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            FileActivity.startActivity(activity, "文件详情", s);
+                            if (fileItemClickListener != null) {
+                                fileItemClickListener.onItemClick(s, v);
+                            }
                         }
                     });
 
@@ -74,5 +75,9 @@ public class FileContentUtil {
                 }
             }
         }
+    }
+
+    public interface OnFileItemClickListener {
+        void onItemClick(String s, View view);
     }
 }

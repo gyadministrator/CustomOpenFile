@@ -1,10 +1,12 @@
 package com.android.custom.openfile;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.custom.filelib.activity.FileActivity;
 import com.android.custom.filelib.util.FileContentUtil;
 
 
@@ -34,7 +36,12 @@ public class MainActivity extends AppCompatActivity {
                 "http://10.0.0.254:8077/file_temp/20201216/测试.png,"+
                 "http://10.0.0.254:8077/file_temp/20201216/测试.jpg,"+
                 "http://10.0.0.254:8077/file_temp/20201216/测试.jpeg";
-        FileContentUtil.getView(this, s, llContent);
+        FileContentUtil.getView(this, s, llContent, new FileContentUtil.OnFileItemClickListener() {
+            @Override
+            public void onItemClick(String s, View view) {
+                FileActivity.startActivity(MainActivity.this,"文件详情",s);
+            }
+        });
     }
 
     private void initView() {

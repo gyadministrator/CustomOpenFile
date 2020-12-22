@@ -4,16 +4,17 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#FFFFFF"
-    android:gravity="center_vertical"
     android:orientation="horizontal"
     android:paddingTop="6dp"
-    android:paddingBottom="6dp">
+    android:gravity="center_vertical"
+    android:paddingStart="4dp"
+    android:paddingBottom="6dp"
+    tools:ignore="RtlSymmetry">
 
     <ImageView
         android:id="@+id/iv_icon"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginStart="10dp"
         android:src="@mipmap/item_doc" />
 
     <TextView

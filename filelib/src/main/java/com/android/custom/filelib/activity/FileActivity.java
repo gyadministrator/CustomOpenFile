@@ -2,36 +2,30 @@ package com.android.custom.filelib.activity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.custom.filelib.R;
-import com.just.agentweb.AgentWeb;
-import com.just.agentweb.AgentWebConfig;
+import com.android.custom.filelib.view.FileContentView;
 
 public class FileActivity extends AppCompatActivity {
     RelativeLayout rlBack;
     TextView tvTitle;
-    LinearLayout llContent;
+    private FileContentView fileContentView;
     private String title;
     private String url;
-    private AgentWeb agentWeb;
     private static final String TAG = "FileActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_file);
-
         initView();
         initData();
     }
@@ -48,25 +42,13 @@ public class FileActivity extends AppCompatActivity {
             }
         });
         tvTitle.setText(title);
-        openUrl();
+        fileContentView.setUrl(url);
     }
 
     private void initView() {
         rlBack = findViewById(R.id.rl_back);
         tvTitle = findViewById(R.id.tv_title);
-        llContent = findViewById(R.id.ll_content);
-    }
-
-    private void openUrl() {
-        agentWeb = AgentWeb.with(this)
-                .setAgentWebParent(llContent, new LinearLayout.LayoutParams(-1, -1))
-                .useDefaultIndicator()
-                .createAgentWeb()
-                .ready()
-                .go(url);
-
-        FrameLayout frameLayout = agentWeb.getWebCreator().getWebParentLayout();
-        frameLayout.setBackgroundColor(Color.WHITE);
+        fileContentView = findViewById(R.id.fileContentView);
     }
 
     public static void startActivity(Activity activity, String title, String url) {
@@ -78,34 +60,24 @@ public class FileActivity extends AppCompatActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (agentWeb != null) {
-            if (agentWeb.handleKeyEvent(keyCode, event)) {
-                return true;
-            }
-        }
-        return super.onKeyDown(keyCode, event);
+        return fileContentView.onKeyDown(keyCode, event);
     }
 
     @Override
     protected void onPause() {
-        if (agentWeb != null) {
-            agentWeb.getWebLifeCycle().onPause();
-        }
+        fileContentView.onPause();
         super.onPause();
-
     }
 
     @Override
     protected void onResume() {
-        if (agentWeb != null) {
-            agentWeb.getWebLifeCycle().onResume();
-        }
+        fileContentView.onResume();
         super.onResume();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        AgentWebConfig.clearDiskCache(this);
+        fileContentView.onDestroy();
     }
 }
