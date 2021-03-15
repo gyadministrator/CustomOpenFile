@@ -11,6 +11,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.custom.filelib.R;
+import com.android.custom.filelib.entity.FileEntity;
+
+import java.util.List;
 
 /**
  * @ProjectName: CustomOpenFile
@@ -20,6 +23,59 @@ import com.android.custom.filelib.R;
  * @CreateDate: 2020/12/21 14:34
  */
 public class FileContentUtil {
+    public static void getView(final Activity activity, List<FileEntity> list, LinearLayout content, final OnFileItemClickListener fileItemClickListener) {
+        if (list == null || list.size() == 0) return;
+        content.setOrientation(LinearLayout.VERTICAL);
+        for (FileEntity fileEntity : list) {
+            String name = fileEntity.getName();
+            final String url = fileEntity.getUrl();
+            @SuppressLint("InflateParams") View view = LayoutInflater.from(activity).inflate(R.layout.activity_file_item, null);
+            ImageView ivIcon = view.findViewById(R.id.iv_icon);
+            TextView tvTitle = view.findViewById(R.id.tv_title);
+            String type = url.substring(url.lastIndexOf(".") + 1);
+            tvTitle.setText(name);
+            switch (type) {
+                case "doc":
+                case "docx":
+                    ivIcon.setImageResource(R.mipmap.item_doc);
+                    break;
+                case "ppt":
+                case "pptx":
+                    ivIcon.setImageResource(R.mipmap.item_ppt);
+                    break;
+                case "xls":
+                case "xlsx":
+                    ivIcon.setImageResource(R.mipmap.item_xls);
+                    break;
+                case "txt":
+                    ivIcon.setImageResource(R.mipmap.item_txt);
+                    break;
+                case "pdf":
+                    ivIcon.setImageResource(R.mipmap.item_pdf);
+                    break;
+                case "png":
+                case "jpg":
+                case "jpeg":
+                    ivIcon.setImageResource(R.mipmap.item_pic);
+                    break;
+            }
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (fileItemClickListener != null) {
+                        fileItemClickListener.onItemClick(url, v);
+                    }
+                }
+            });
+
+            if (view.getParent() != null) {
+                ViewGroup viewGroup = (ViewGroup) view.getParent();
+                viewGroup.removeView(view);
+            }
+            content.addView(view);
+        }
+    }
+
     public static void getView(final Activity activity, String file, LinearLayout content, final OnFileItemClickListener fileItemClickListener) {
         if (TextUtils.isEmpty(file) || content == null) return;
         content.setOrientation(LinearLayout.VERTICAL);
